@@ -1,0 +1,16 @@
+If you're running a Django application with Nginx inside a Docker container and changes made to your Django code are not being reflected, there are a few potential issues to consider.
+
+    Docker image caching: When you build a Docker image, Docker uses a cache to speed up the build process. If you've made changes to your Django code, Docker may still be using the old cached image. To fix this, you can use the --no-cache flag when building the Docker image to force Docker to rebuild the image from scratch.
+
+    Nginx caching: Nginx may be caching your static files, which can prevent changes from being reflected. To fix this, you can try clearing Nginx's cache by running the command sudo service nginx restart inside your Docker container.
+
+    Django server not reloading: By default, the Django server does not automatically reload when changes are made to the code. To fix this, you can use a tool like watchdog to monitor your Django code and automatically reload the server when changes are made.
+
+    Incorrect file permissions: If your Django code files have incorrect file permissions, the server may not be able to read them. Make sure the file permissions are set correctly, especially if you are running the container as a non-root user.
+
+    Network issues: If you're running Docker on a remote server, network issues can also prevent changes from being reflected. Make sure that your Docker container is able to communicate with your host machine and that your Nginx configuration is correct.
+
+By checking these potential issues, you should be able to diagnose why your Django changes are not being reflected inside your Docker container.
+
+
+sudo service nginx restart

@@ -3,18 +3,19 @@ version: '3.7'
 services:
   server:
     volumes:
+      - ./server:/app
       - static:/static
     env_file:
-      - ./server/.env
+      - .env
     build: ./server
     ports:
-      - "8000:8000"
+      - "8005:8000"
   nginx:
     build: ./nginx
     volumes:
       - static:/static
     ports:
-      - "80:80"
+      - "85:80"
     depends_on:
       - server
 
